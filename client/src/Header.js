@@ -1,6 +1,4 @@
-// Header.js
 import React, { useState } from "react";
-import Zen from "./img/ZenVolt.jpeg"; // Import the image
 import logo from "./img/logo.png";
 import { AiOutlineMenu, AiOutlineMinus } from "react-icons/ai";
 import { useNavigation } from "./NavigationContext";
@@ -13,21 +11,21 @@ const Header = () => {
   return (
     <header className="header1">
       <div>
-      <img src={logo} alt="Logo" className="logo" style={{ width: "90px", height: "70px", borderRadius: "50%", marginTop: "15px", position: "relative" }} />
+        <img src={logo} alt="Logo" className="logo" style={{ width: "90px", height: "70px", borderRadius: "50%", marginTop: "15px", position: "relative" }} />
       </div>
 
       <ul className={click ? "nav-menu1 active1" : "nav-menu1"}>
         <li>
-          <button onClick={() => navigate("/")}>Home</button>
+          <button className="wallet-button" onClick={() => navigate("/")}>Home</button>
         </li>
         <li>
-          <button onClick={() => navigate("/our-services")}>Our Services</button>
+          <button className="wallet-button" onClick={() => navigate("/our-services")}>Our Services</button>
         </li>
         <li>
-          <button onClick={() => navigate("/profile")}>Profile</button>
+          <button className="wallet-button" onClick={() => navigate("/profile")}>Profile</button>
         </li>
         <li>
-        <button onClick={() => navigate("/LogIn")}>Log In</button>
+          <button className="wallet-button" onClick={() => navigate("/LogIn")}>Log In</button>
         </li>
       </ul>
 

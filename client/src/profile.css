@@ -19,6 +19,13 @@
     border-radius:   0; /* Add border radius to make the image round */
     margin-bottom: 0px; /* Add margin below the image */
   }
+  /*for graph*/
+  .avatar3 {
+    width: 90%;
+    height: 300px;
+    border-radius:   0; /* Add border radius to make the image round */
+    margin-bottom: 0px; /* Add margin below the image */
+  }
   
   /* AboutUs.css */
   .Services1 {

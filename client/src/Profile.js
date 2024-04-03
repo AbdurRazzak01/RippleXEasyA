@@ -5,6 +5,7 @@ import Calculator from "./Calculator";
 import LandingPage from "./LandingPage";
 import XrpWallet from "./XrpWallet";
 import avata from "./img/profileGuy.jpg";
+import graph from "./img/graph.png";
 
 const Profile = () => {
   const [showWallet, setShowWallet] = useState(false);
@@ -32,6 +33,8 @@ const Profile = () => {
           </div>
           <div className="section">
             <div className="calculator">
+            <img className="avatar3" src={graph} alt="Avatar" />
+
               <Calculator />
             </div>
             <div className="landing">

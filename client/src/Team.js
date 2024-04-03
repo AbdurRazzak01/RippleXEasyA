@@ -19,11 +19,7 @@ const About = () => {
       <div>
   <h2 style={{ marginBottom: "10px" }}>Our Mission</h2> {/* Add margin-bottom */}
   <p style={{ marginBottom: "20px" }}> {/* Add margin-bottom */}
-    Our mission is to make the world more sustainable while having the farms
-    and local shops connected with the local community. Our aim to have all
-    the farms of London registered with us within July 2023 and cover the whole
-    UK within December 2024. We plan to play a prominent role in the world of
-    fresh produces from year 2025.
+    We want to give you money! That's all! within 2025 we want to give away 25M pounds! 
   </p>
   <hr />
 </div>
@@ -53,7 +49,7 @@ const About = () => {
             <img className="banner-img" src={avatar} alt="Bannerimg" />
             <h4 className="font-weight-bold dark-grey-text mt-4">ZZZ</h4>
             <h6 className="font-weight-bold blue-text my-3">
-              Product Owner: Sprint 1B
+              CFO
             </h6>
             <p className="font-weight-normal dark-grey-text"></p>
           </div>
@@ -61,10 +57,10 @@ const About = () => {
             <div className="testimonial mb-5">
               <img className="banner-img" src={abdur} alt="Bannerimg" />
               <h4 className="font-weight-bold dark-grey-text mt-4">
-                Abdur Razzak
+                YYY
               </h4>
               <h6 className="font-weight-bold blue-text my-3">
-                Scrum Master: Sprint 2
+                CMO
               </h6>
               <p className="font-weight-normal dark-grey-text"></p>
             </div>

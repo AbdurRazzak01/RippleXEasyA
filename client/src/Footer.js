@@ -26,7 +26,7 @@ const Footer = () => {
                 size={20}
                 style={{ color: "#fff", marginRight: "2rem" }}
               />
-              farmtoplateinfo@gmail.com
+              purpleX.com
             </p>
           </div>
         </div>

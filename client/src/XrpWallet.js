@@ -14,6 +14,20 @@ const XrpWallet = () => {
             const newClient = new Client('wss://s.altnet.rippletest.net:51233');
             await newClient.connect();
             setClient(newClient);
+
+            // Fetch account info and ledger details
+            const accountInfoResponse = await newClient.request({
+                command: 'account_info',
+                account: 'rN1AQqP8rERQp8GDV2TRVELEZEfKADwVY7'
+            });
+            setAccountInfo(accountInfoResponse.result.account_data);
+
+            const ledgerDetailsResponse = await newClient.request({
+                command: 'ledger',
+                ledger_index: 'validated',
+                ledger_hash: ''
+            });
+            setLedgerDetails(ledgerDetailsResponse.result.ledger);
         };
 
         initializeClient();
@@ -57,7 +71,7 @@ const XrpWallet = () => {
         <div className="wallet_container">
             <div className="main_logo">
                 <img src={ripple} alt="Logo" className="logo" style={{ width: "90px", height: "70px", borderRadius: "50%", marginTop: "15px", position: "relative" }} />
-                </div>
+            </div>
             <div className="wallet_details">
                 <h2>Account Information:</h2>
                 {accountInfo ? (
@@ -73,7 +87,7 @@ const XrpWallet = () => {
                     <div>
                         <p><strong>Ledger Index:</strong> {ledgerDetails.ledger_index}</p>
                         <p><strong>Ledger Hash:</strong> {ledgerDetails.ledger_hash}</p>
-                        <p><strong>Close Time:</strong> {rippleTimeToISOTime(ledgerDetails.ledger_time)}</p>
+                        <p><strong>Close Time:</strong> {rippleTimeToISOTime(ledgerDetails.close_time)}</p>
                     </div>
                 )}
             </div>
