@@ -25,10 +25,10 @@ const Header = () => {
           <button className="wallet-button" onClick={() => navigate("/profile")}>Profile</button>
         </li>
         <li>
-          <button className="wallet-button" onClick={() => navigate("/LogIn")}>Log In</button>
+          <button className="wallet-button" onClick={() => navigate("/Test")}>Log In</button>
         </li>
       </ul>
-
+        
       <div className="menubutton1" onClick={handleClick}>
         {click ? (
           <AiOutlineMinus size={25} style={{ color: "#fff" }} />
@@ -36,7 +36,9 @@ const Header = () => {
           <AiOutlineMenu size={25} style={{ color: "#fff" }} />
         )}
       </div>
+      
     </header>
+    
   );
 };
 

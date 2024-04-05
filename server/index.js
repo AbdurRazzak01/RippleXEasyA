@@ -58,13 +58,24 @@ app.post('/send-xrp', async (req, res) => {
 
 
 // Calculate coins based on input amount
+// Calculate coins based on input amount with validation
 app.post('/calculate-coins', (req, res) => {
   try {
     const { amount } = req.body;
+
+    // Validate amount
     if (isNaN(amount)) {
       throw new Error('Invalid input: amount must be a number');
     }
+
+    // Custom validation logic - Check if the amount is even
+    if (!isValidAmount(amount)) {
+      throw new Error('Invalid input: amount is not even');
+    }
+
+    // Calculate coins based on the input amount only if it's valid
     const coins = calculateCoins(amount);
+
     res.json({ coins });
   } catch (error) {
     console.error('Error calculating coins:', error.message);
@@ -72,10 +83,16 @@ app.post('/calculate-coins', (req, res) => {
   }
 });
 
+// Function to check if the amount is even
+function isValidAmount(amount) {
+  return amount % 2 === 0;
+}
+
 // Function to calculate coins
 function calculateCoins(amount) {
   return amount / 50; // Example calculation
 }
+
 
 // Mock user database (replace this with your actual user database)
 const users = [
@@ -98,6 +115,59 @@ app.post('/api/login', (req, res) => {
     res.status(401).json({ message: 'Invalid email or password' });
   }
 });
+/////////////////////////////////////////////////
+/*// Endpoint for calculating and receiving money automatically
+
+app.post('/calculate-and-receive', async (req, res) => {
+  try {
+    const { amount } = req.body;
+
+    // Validate amount
+    if (isNaN(amount)) {
+      throw new Error('Invalid input: amount must be a number');
+    }
+
+    // Custom validation logic - Check if the amount is even
+    if (!isValidAmount(amount)) {
+      throw new Error('Invalid input: amount is not even');
+    }
+
+    // Calculate coins based on the input amount
+    const coins = calculateCoins(amount);
+
+    // Connect to XRPL client
+   // await client.connect();
+
+    // Replace 'receiverAddress' with the address of your receiving wallet
+   // const receiverAddress = 'rXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
+    
+    // Construct the transaction to receive XRP
+   // const txJson = {
+    //  TransactionType: 'Payment',
+     // Account: receiverAddress,
+     // Amount: amount,
+   // };
+
+    // Submit the transaction
+    //const result = await client.submit(txJson);
+    
+    // Send response with validated amount and transaction result
+    res.json({ coins, result });
+  } catch (error) {
+    console.error('Error calculating and receiving money:', error.message);
+   // res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Function to check if the amount is even
+function isValidAmount(amount) {
+  return amount % 2 === 0;
+}
+
+// Function to calculate coins based on the input amount
+function calculateCoins(amount) {
+  return amount / 50; // Calculation: amount divided by 50
+}*/
 
 // Start the server
 app.listen(port, () => {

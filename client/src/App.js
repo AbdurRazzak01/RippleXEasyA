@@ -1,5 +1,4 @@
-// App.js
-import React from "react";
+import React, { useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import Intro from "./Intro";
@@ -10,6 +9,12 @@ import Teams from "./Team";
 import { NavigationProvider } from "./NavigationContext";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
   return (
     <NavigationProvider>
       <div>
@@ -20,9 +25,10 @@ function App() {
         {/* Main sections of the application */}
         <Intro />
         <OurServices />
-        <Teams/>
-        <Profile />
-       
+        <Teams />
+        
+        {/* Conditionally render LoginForm or Profile based on login status */}
+        {isLoggedIn ? <Profile /> : <LogIn onLogin={handleLogin} />}
        
         <Footer />
       </div>
