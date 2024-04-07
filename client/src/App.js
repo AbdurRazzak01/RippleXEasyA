@@ -6,8 +6,9 @@ import OurServices from "./OurServices";
 import Profile from "./Profile";
 import LogIn from "./LogIn";
 import Teams from "./Team";
-import { NavigationProvider } from "./NavigationContext";
-
+import Meta from "./MetamaskWallet";
+import MetaInfo from "./MetamaskDataRead";
+import MyComponent from "./MetaPopUp";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -16,23 +17,23 @@ function App() {
   };
 
   return (
-    <NavigationProvider>
-      <div>
-        <Header />
-        <div className="container">
-          <h1></h1>
-        </div>
-        {/* Main sections of the application */}
-        <Intro />
-        <OurServices />
-        <Teams />
-        
-        {/* Conditionally render LoginForm or Profile based on login status */}
-        {isLoggedIn ? <Profile /> : <LogIn onLogin={handleLogin} />}
-       
-        <Footer />
+    <div>
+      <Header />
+      <div className="container">
+        <h1>Main Content Area</h1>
       </div>
-    </NavigationProvider>
+      {/* Main sections of the application */}
+      <Intro />
+      <OurServices />
+      <Teams />
+      <MetaInfo/>
+      <MyComponent/>
+      <Meta />
+     
+      {/* Conditionally render LoginForm or Profile based on login status */}
+      {isLoggedIn ? <Profile /> : <LogIn onLogin={handleLogin} />}
+      <Footer />
+    </div>
   );
 }
 

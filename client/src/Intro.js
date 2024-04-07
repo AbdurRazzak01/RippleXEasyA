@@ -1,7 +1,8 @@
 import React from "react";
 import CoverImg from "./img/fin.jpg";
 
-import "./2124880.css";
+import "./Main.css";
+
 
 const Blankpage = () => {
   return (

@@ -24,6 +24,7 @@
       "last 1 safari version"
     ]
   },
+  
   "dependencies": {
     "axios": "^1.6.8"
   }

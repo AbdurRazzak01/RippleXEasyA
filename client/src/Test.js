@@ -8,19 +8,20 @@ import Profile from "./Profile";
 import LogIn from "./LogIn";
 import Teams from "./Team";
 import { NavigationProvider } from "./NavigationContext";
+import { Route, Routes } from "react-router-dom";
 
-function App() {
+function Test() {
   return (
-    <NavigationProvider>
-      <div>
-        <Header />
-     
-       <LogIn/>
-       
-        <Footer />
-      </div>
-    </NavigationProvider>
+
+    <> <Routes>
+      
+    <Route path="/login" element={<LogIn />} />
+   
+
+   </Routes>
+ 
+  </>
   );
 }
 
-export default App;
+export default Test;

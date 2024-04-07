@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Web3 from 'web3';
+
 import './Calculator.css'; // Import CSS file for styling
 
 const Calculator = () => {
@@ -7,25 +9,45 @@ const Calculator = () => {
   const [amount2, setAmount2] = useState('');
   const [coins, setCoins] = useState(null);
   const [error, setError] = useState(null);
+  const [transactionStatus, setTransactionStatus] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
         'http://localhost:5001/calculate-coins',
-        { amount: parseInt(amount1) + parseInt(amount2) }, // Sum of two amounts
+        { amount: parseInt(amount1) + parseInt(amount2) },
         {
           headers: {
-            'Content-Type': 'application/json' // Explicitly set content type to JSON
+            'Content-Type': 'application/json'
           }
         }
       );
       setCoins(response.data.coins);
       setError(null);
+
+      // Transfer the calculated coins
+      if (response.data.coins > 0) {
+        const web3 = new Web3(window.ethereum);
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        const senderAddress = accounts[0];
+        const receiverAddress = '0x1234567890123456789012345678901234567890'; // Replace with the recipient's address
+        const amountToSend = web3.utils.toWei(response.data.coins.toString(), 'ether');
+
+        const tx = await web3.eth.sendTransaction({
+          from: senderAddress,
+          to: receiverAddress,
+          value: amountToSend,
+        });
+
+        setTransactionStatus(`Transaction successful. Transaction hash: ${tx.transactionHash}`);
+      } else {
+        setTransactionStatus('No coins to transfer.');
+      }
     } catch (error) {
-      console.error('Error calculating coins:', error.message);
+      console.error('Error:', error.message);
       setError('Error calculating coins. Please try again later.');
-      setCoins(null); // Reset coins value in case of error
+      setCoins(null);
     }
   };
 
@@ -59,6 +81,7 @@ const Calculator = () => {
           <span>{coins}</span>
         </div>
       }
+      {transactionStatus && <div className="transaction-status">{transactionStatus}</div>}
     </div>
   );
 };
